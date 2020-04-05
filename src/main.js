@@ -28,6 +28,11 @@ const checkSlots = async (page, retries = 0, maxRetries) => {
 
   if (maxRetries != 0 && retries > maxRetries) {
     console.info('Got max tries = ', maxRetries)
+    page.evaluate(() => {
+      new Notification('Redmart', {
+        body: 'There are delivery slots available 🎉',
+      })
+    })
     return
   }
 
@@ -49,6 +54,12 @@ const checkSlots = async (page, retries = 0, maxRetries) => {
   })
   const page = await browser.newPage()
   await page.goto('https://checkout.lazada.sg/shipping')
+
+  await page.evaluate(() => {
+    if (Notification.permission !== 'granted') {
+      Notification.requestPermission()
+    }
+  })
 
   const maxRetries = 0
   checkSlots(page, 0, maxRetries)
