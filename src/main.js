@@ -47,7 +47,7 @@ const checkSlots = async (page, retries = 0, maxRetries) => {
   }
 
   const delay = randomBetween(...DELAY_BETWEEN_RETRIES_IN_MINUTES)
-  console.log(`Wait ${delay / 1000} minutes for next try`)
+  console.log(`Wait ${delay} minutes for next try`)
   setTimeout(
     () => checkSlots(page, retries + 1, maxRetries),
     delay * MILLISECONDS_IN_ONE_MINUTE
