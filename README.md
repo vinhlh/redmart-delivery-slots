@@ -17,4 +17,6 @@ That's why we have this script.
 - Run the app
 `node src/main.js`
 
-- By default, the script will spin a new tab, and check every 60 seconds.
+- By default, the script will spin a new tab, and check every interval from 10 - 30 minutes randomly to bypass firewall (Bot detection).
+
+- Keep the tab in a separate window and open, so you can continue your work in a separate window normally.
