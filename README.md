@@ -5,7 +5,9 @@ Due to coronavirus outbreak, Redmart delivery slots now be assigned based on add
 But, Redmart hasn't provided any clear info when delivery slots of a specific address are opened.
 And as customers, we have to go into the website/ app and check constantly.
 
-That's why we have this script.
+That's why we have this script. 
+
+![image](https://user-images.githubusercontent.com/261283/78641029-3593a800-78e3-11ea-902e-539687def26d.png)
 
 ## Usage
 
