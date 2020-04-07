@@ -1,6 +1,13 @@
 const puppeteer = require('puppeteer-core')
 
-const DELAY_BETWEEN_RETRIES = 60000
+// min and max delays, in minutes
+const DELAY_BETWEEN_RETRIES_IN_MINUTES = [10, 30]
+
+const MILLISECONDS_IN_ONE_MINUTE = 60 * 1000
+
+const randomBetween = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
 
 const checkSlots = async (page, retries = 0, maxRetries) => {
   console.info('Retries = ', retries)
@@ -16,8 +23,16 @@ const checkSlots = async (page, retries = 0, maxRetries) => {
 
   if (availableSlots.length > 0) {
     console.info('==================================')
-    console.info('FOUND', availableSlots)
+    console.info(
+      `Found ${availableSlots.length} days! There are delivery slots available 🎉`
+    )
     console.info('==================================')
+
+    page.evaluate(() => {
+      new Notification('Redmart', {
+        body: 'There are delivery slots available 🎉',
+      })
+    })
     return
   }
 
@@ -28,18 +43,14 @@ const checkSlots = async (page, retries = 0, maxRetries) => {
 
   if (maxRetries != 0 && retries > maxRetries) {
     console.info('Got max tries = ', maxRetries)
-    page.evaluate(() => {
-      new Notification('Redmart', {
-        body: 'There are delivery slots available 🎉',
-      })
-    })
     return
   }
 
-  console.log(`Wait ${DELAY_BETWEEN_RETRIES / 1000} seconds for next try`)
+  const delay = randomBetween(...DELAY_BETWEEN_RETRIES_IN_MINUTES)
+  console.log(`Wait ${delay / 1000} minutes for next try`)
   setTimeout(
     () => checkSlots(page, retries + 1, maxRetries),
-    DELAY_BETWEEN_RETRIES
+    delay * MILLISECONDS_IN_ONE_MINUTE
   )
 }
 
