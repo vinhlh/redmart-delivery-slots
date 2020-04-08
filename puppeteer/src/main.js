@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer-core')
 
 // min and max delays, in minutes
-const DELAY_BETWEEN_RETRIES_IN_MINUTES = [2, 12]
+const DELAY_BETWEEN_RETRIES_IN_MINUTES = [1, 12]
 
 const MILLISECONDS_IN_ONE_MINUTE = 60 * 1000
 
