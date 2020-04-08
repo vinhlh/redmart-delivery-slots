@@ -1,0 +1,23 @@
+{
+  "name": "Redslot",
+  "description": "Check RedMart's delivery slots",
+  "version": "0.0.2",
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": ["https://checkout.lazada.sg/shipping"],
+      "js": ["content_script.js"],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": ["https://checkout.lazada.sg/shipping*", "notifications"],
+  "icons": {
+    "16": "images/icon-19.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  }
+}
